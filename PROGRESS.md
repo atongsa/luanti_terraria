@@ -46,3 +46,26 @@ Format for each entry:
 
 **Next**:
 - Day 1: Create game skeleton (`game.conf`, basic mod folders, make it loadable in Luanti).
+
+---
+
+## 2026-11-15 — Day 1: Create game skeleton
+
+**Status**: Partial (skeleton created, still needs testing in Luanti)
+
+**What was done**:
+- Added `game.conf` with basic game metadata.
+- Created `mods/core/` with `mod.conf` and minimal `init.lua` that logs on load.
+- Repo is now a valid (minimal) Luanti game structure.
+
+**Commits / files**:
+- game.conf
+- mods/core/mod.conf
+- mods/core/init.lua
+
+**Notes / blockers**:
+- To fully complete Day 1, clone/pull this repo into your Luanti `games/` folder (rename folder to something like `luanti_terraria`), start Luanti, and confirm the game appears and loads an empty world without errors.
+- No nodes or mapgen yet — that is Day 2+.
+
+**Next**:
+- Day 2: Implement basic nodes (dirt, grass, stone, wood, leaves) + simple textures.
