@@ -69,3 +69,36 @@ Format for each entry:
 
 **Next**:
 - Day 2: Implement basic nodes (dirt, grass, stone, wood, leaves) + simple textures.
+
+---
+
+## 2026-11-16 — Day 1: Finish game skeleton
+
+**Status**: Done (pending user confirmation of load in Luanti)
+
+**What was done**:
+- Expanded the mod structure with placeholder mods matching the planned architecture: nodes, mapgen, items, entities, crafting, progression, ui, biomes.
+- Each has mod.conf and a minimal init.lua that logs on load.
+- Added .gitignore for common files and worlds/.
+- Updated README.md with testing instructions and current status.
+- Core skeleton is now more complete and ready for Day 2 node work.
+
+**Commits / files**:
+- mods/nodes/mod.conf, mods/nodes/init.lua
+- mods/mapgen/mod.conf, mods/mapgen/init.lua
+- mods/items/mod.conf, mods/items/init.lua
+- mods/entities/mod.conf, mods/entities/init.lua
+- mods/crafting/mod.conf, mods/crafting/init.lua
+- mods/progression/mod.conf, mods/progression/init.lua
+- mods/ui/mod.conf, mods/ui/init.lua
+- mods/biomes/mod.conf, mods/biomes/init.lua
+- .gitignore
+- README.md (updated)
+- PROGRESS.md (this update)
+
+**Notes / blockers**:
+- Please clone/pull the latest into your Luanti games/ folder and confirm it loads an empty world without errors. Once confirmed, Day 1 is fully closed.
+- All names and content remain original.
+
+**Next**:
+- Day 2: Implement basic nodes (dirt, grass, stone, wood, leaves) + simple original textures.
