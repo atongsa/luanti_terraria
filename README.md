@@ -6,10 +6,17 @@ A 3D voxel sandbox adventure game inspired by Terraria, built on the Luanti (for
 
 ## Status
 
-Empty repository - project setup in progress.
+Game skeleton complete (Day 1). Ready for node implementation.
 
 See [OUTLINE.md](OUTLINE.md) for the full plan and 30-day roadmap.
 See [PROGRESS.md](PROGRESS.md) for daily logs.
+
+## How to test
+
+1. Clone this repo into your Luanti `games/` directory (or symlink).
+2. Rename the folder to `luanti_terraria` if needed.
+3. Launch Luanti, select the game, create a new world.
+4. It should load with core mods logging messages in the console/debug.
 
 ## Goals
 
