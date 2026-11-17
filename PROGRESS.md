@@ -107,7 +107,7 @@ Format for each entry:
 
 ## 2026-11-17 — Day 2: Implement basic nodes
 
-**Status**: Done (textures are placeholders; nodes registered)
+**Status**: Done
 
 **What was done**:
 - Registered five basic nodes with original names in `mods/nodes/init.lua`:
@@ -117,17 +117,24 @@ Format for each entry:
   - `nodes:timber` (wood equivalent)
   - `nodes:foliage` (leaves equivalent, with waving and light param)
 - Added appropriate groups for mining/digging (crumbly, cracky, choppy, snappy, etc.).
-- Created `mods/nodes/textures/README.md` documenting the expected original 16x16 PNG texture filenames.
-- Nodes will appear in creative inventory (via groups) and can be placed once the game loads.
+- Created simple solid-color 16x16 PNG texture placeholders in `mods/nodes/textures/` (brown soil, green turf, gray stone, dark brown timber, green foliage).
+- Added `mods/nodes/textures/README.md` documenting the texture files.
+- Nodes will appear in creative inventory (via groups) and can be placed once the game loads. Textures are basic solid colors for now (can be improved later with more detailed original art).
 
 **Commits / files**:
 - mods/nodes/init.lua (updated with node registrations)
-- mods/nodes/textures/README.md (new)
+- mods/nodes/textures/README.md
+- mods/nodes/textures/nodes_soil.png
+- mods/nodes/textures/nodes_turf.png
+- mods/nodes/textures/nodes_cragstone.png
+- mods/nodes/textures/nodes_timber.png
+- mods/nodes/textures/nodes_foliage.png
 - PROGRESS.md (this update)
+- README.md (status updated)
 
 **Notes / blockers**:
-- Textures are not yet committed (binary PNG upload limitation in this workflow). Add the PNG files listed in textures/README.md for proper visuals; until then, missing-texture (pink) will show. Simple colored placeholders are fine for testing.
-- Please test in Luanti: the nodes should be placeable (use creative mode or /giveme nodes:soil etc.). Confirm no Lua errors on load.
+- Textures are simple solid colors (original). Improve with more detailed pixel art in later days if desired.
+- Please test in Luanti: the nodes should be placeable (use creative mode or /giveme nodes:soil etc.) and show solid colors. Confirm no Lua errors on load.
 - All content original; no Terraria names or assets.
 
 **Next**:
