@@ -102,3 +102,33 @@ Format for each entry:
 
 **Next**:
 - Day 2: Implement basic nodes (dirt, grass, stone, wood, leaves) + simple original textures.
+
+---
+
+## 2026-11-17 — Day 2: Implement basic nodes
+
+**Status**: Done (textures are placeholders; nodes registered)
+
+**What was done**:
+- Registered five basic nodes with original names in `mods/nodes/init.lua`:
+  - `nodes:soil` (dirt equivalent)
+  - `nodes:turf` (grass equivalent, with different top texture)
+  - `nodes:cragstone` (stone equivalent)
+  - `nodes:timber` (wood equivalent)
+  - `nodes:foliage` (leaves equivalent, with waving and light param)
+- Added appropriate groups for mining/digging (crumbly, cracky, choppy, snappy, etc.).
+- Created `mods/nodes/textures/README.md` documenting the expected original 16x16 PNG texture filenames.
+- Nodes will appear in creative inventory (via groups) and can be placed once the game loads.
+
+**Commits / files**:
+- mods/nodes/init.lua (updated with node registrations)
+- mods/nodes/textures/README.md (new)
+- PROGRESS.md (this update)
+
+**Notes / blockers**:
+- Textures are not yet committed (binary PNG upload limitation in this workflow). Add the PNG files listed in textures/README.md for proper visuals; until then, missing-texture (pink) will show. Simple colored placeholders are fine for testing.
+- Please test in Luanti: the nodes should be placeable (use creative mode or /giveme nodes:soil etc.). Confirm no Lua errors on load.
+- All content original; no Terraria names or assets.
+
+**Next**:
+- Day 3: Custom mapgen — surface + underground + basic caves (Terraria-style vertical layers).
