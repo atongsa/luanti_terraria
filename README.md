@@ -6,7 +6,7 @@ A 3D voxel sandbox adventure game inspired by Terraria, built on the Luanti (for
 
 ## Status
 
-Day 2 complete: Basic nodes (soil, turf, cragstone, timber, foliage) registered. Textures are placeholders (see mods/nodes/textures/README.md). Ready for mapgen.
+Day 3 complete: Custom mapgen with surface (turf/soil), underground (cragstone), and basic caves. Nodes from Day 2 are used. Ready for player physics tuning.
 
 See [OUTLINE.md](OUTLINE.md) for the full plan and 30-day roadmap.
 See [PROGRESS.md](PROGRESS.md) for daily logs.
@@ -16,8 +16,8 @@ See [PROGRESS.md](PROGRESS.md) for daily logs.
 1. Clone this repo into your Luanti `games/` directory (or symlink).
 2. Rename the folder to `luanti_terraria` if needed.
 3. Launch Luanti, select the game, create a new world.
-4. It should load with core mods logging messages in the console/debug.
-5. In creative mode (or with /giveme), place the new nodes: nodes:soil, nodes:turf, etc.
+4. It should generate a layered world: rolling turf surface, soil layer, stone underground, and some cave voids.
+5. Confirm no Lua errors in the console. Nodes are placeable in creative mode.
 
 ## Goals
 
