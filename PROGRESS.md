@@ -139,3 +139,31 @@ Format for each entry:
 
 **Next**:
 - Day 3: Custom mapgen — surface + underground + basic caves (Terraria-style vertical layers).
+
+---
+
+## 2026-11-18 — Day 3: Custom mapgen
+
+**Status**: Done
+
+**What was done**:
+- Implemented custom mapgen in `mods/mapgen/init.lua` using singlenode base + `register_on_generated`.
+- Surface layer: turf (nodes:turf) at variable height (~Y=8 with simple sine/cosine variation), soil (nodes:soil) for a few blocks below.
+- Underground: cragstone (nodes:cragstone) filling the rest of the volume.
+- Basic caves: random spherical/void carves in the stone layer for underground exploration.
+- Updated `mods/mapgen/mod.conf` to depend on the nodes mod.
+- Disabled water for now (very low water_level) to keep the focus on solid layers.
+
+**Commits / files**:
+- mods/mapgen/mod.conf (depends on nodes)
+- mods/mapgen/init.lua (full custom layered generator + cave carves)
+- PROGRESS.md (this update)
+- README.md (status updated)
+
+**Notes / blockers**:
+- Generation is fully original (simple height function + random cave blobs). No Terraria assets or names.
+- Please test in Luanti: create a new world. You should see a rolling surface of turf/soil over stone, with occasional cave openings underground. Confirm no Lua errors and that lighting looks reasonable.
+- Trees, biomes, ores, and more sophisticated noise will come in later days.
+
+**Next**:
+- Day 4: Player physics tuning (speed, jump, gravity, fall damage) for Terraria-like 3D feel.
