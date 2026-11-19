@@ -6,7 +6,7 @@ A 3D voxel sandbox adventure game inspired by Terraria, built on the Luanti (for
 
 ## Status
 
-Day 3 complete: Custom mapgen with surface (turf/soil), underground (cragstone), and basic caves. Nodes from Day 2 are used. Ready for player physics tuning.
+Day 4 complete: Player physics tuned for Terraria-like 3D feel (higher jump, faster speed, lower gravity, custom fall damage). Custom mapgen and basic nodes from previous days are in place. Ready for basic tools.
 
 See [OUTLINE.md](OUTLINE.md) for the full plan and 30-day roadmap.
 See [PROGRESS.md](PROGRESS.md) for daily logs.
@@ -17,7 +17,8 @@ See [PROGRESS.md](PROGRESS.md) for daily logs.
 2. Rename the folder to `luanti_terraria` if needed.
 3. Launch Luanti, select the game, create a new world.
 4. It should generate a layered world: rolling turf surface, soil layer, stone underground, and some cave voids.
-5. Confirm no Lua errors in the console. Nodes are placeable in creative mode.
+5. Movement should feel snappier with higher jumps and floatier gravity. Falling more than ~8 blocks deals custom damage.
+6. Confirm no Lua errors in the console. Nodes are placeable in creative mode.
 
 ## Goals
 
