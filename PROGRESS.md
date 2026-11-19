@@ -167,3 +167,33 @@ Format for each entry:
 
 **Next**:
 - Day 4: Player physics tuning (speed, jump, gravity, fall damage) for Terraria-like 3D feel.
+
+---
+
+## 2026-11-19 — Day 4: Player physics tuning
+
+**Status**: Done
+
+**What was done**:
+- Tuned player physics in `mods/core/init.lua` for a Terraria-like 3D platforming feel:
+  - Movement speed multiplier: 1.2
+  - Jump height multiplier: 1.8
+  - Gravity multiplier: 0.7 (floatier jumps)
+  - Enabled improved movement where available.
+- Implemented custom fall damage: cancels engine fall damage and applies scaled damage after a safe fall of ~8 blocks (2 damage per additional block).
+- Applied on player join; tracks velocity and position in globalstep for landing detection.
+- Logs applied overrides and fall damage events.
+
+**Commits / files**:
+- mods/core/init.lua (physics overrides + custom fall damage)
+- PROGRESS.md (this update)
+- README.md (status updated)
+
+**Notes / blockers**:
+- Physics values are starting points for a responsive platforming feel; can be fine-tuned after playtesting.
+- Custom fall damage is simple and original. Engine fall damage is suppressed.
+- Please test in Luanti: jump height and movement should feel snappier/floatier than default, and falling more than ~8 blocks should deal damage. Confirm no Lua errors.
+- All content original.
+
+**Next**:
+- Day 5: Basic tools (pickaxe, axe, shovel, sword) + durability + mining groups.
