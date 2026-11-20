@@ -197,3 +197,36 @@ Format for each entry:
 
 **Next**:
 - Day 5: Basic tools (pickaxe, axe, shovel, sword) + durability + mining groups.
+
+---
+
+## 2026-11-20 — Day 5: Basic tools
+
+**Status**: Done
+
+**What was done**:
+- Registered four basic tools with original names in `mods/items/init.lua`:
+  - `items:cragpick` (pickaxe) — digs cracky (cragstone)
+  - `items:timberaxe` (axe) — digs choppy (timber)
+  - `items:soilscoop` (shovel) — digs crumbly (soil/turf)
+  - `items:shortblade` (sword) — digs snappy (foliage) + higher fleshy damage
+- Each has tool_capabilities with groupcaps matching the node groups from Day 2, durability via `uses` (40–50), and appropriate punch damage.
+- Updated `mods/items/mod.conf` to depend on nodes.
+- Added `mods/items/textures/README.md` documenting solid-color inventory texture placeholders (items_cragpick.png etc.). Actual PNG files can be added as simple solid colors matching the style of node textures.
+- Tools are available via creative inventory or `/giveme items:cragpick` etc. and will correctly mine the matching node types.
+
+**Commits / files**:
+- mods/items/init.lua (tool registrations)
+- mods/items/mod.conf (depends = nodes)
+- mods/items/textures/README.md
+- PROGRESS.md (this update)
+- README.md (status updated)
+
+**Notes / blockers**:
+- Texture PNGs are referenced but not yet committed as binary files in this run; they will show as missing-texture until simple 16x16 solid-color PNGs are added (or use the README as guide). Functionality of digging/durability is complete.
+- Please test in Luanti: give yourself the tools and confirm they dig the correct nodes at reasonable speeds, lose durability, and deal punch damage. Confirm no Lua errors.
+- All content original; no Terraria names or assets.
+- Crafting the tools is planned for Day 6.
+
+**Next**:
+- Day 6: Simple crafting system + workbench.
