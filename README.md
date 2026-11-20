@@ -6,7 +6,7 @@ A 3D voxel sandbox adventure game inspired by Terraria, built on the Luanti (for
 
 ## Status
 
-Day 4 complete: Player physics tuned for Terraria-like 3D feel (higher jump, faster speed, lower gravity, custom fall damage). Custom mapgen and basic nodes from previous days are in place. Ready for basic tools.
+Day 5 complete: Basic tools added (cragpick, timberaxe, soilscoop, shortblade) with durability and correct mining groups for the existing nodes. Player physics, custom mapgen, and basic nodes from previous days are in place. Ready for crafting system.
 
 See [OUTLINE.md](OUTLINE.md) for the full plan and 30-day roadmap.
 See [PROGRESS.md](PROGRESS.md) for daily logs.
@@ -18,7 +18,8 @@ See [PROGRESS.md](PROGRESS.md) for daily logs.
 3. Launch Luanti, select the game, create a new world.
 4. It should generate a layered world: rolling turf surface, soil layer, stone underground, and some cave voids.
 5. Movement should feel snappier with higher jumps and floatier gravity. Falling more than ~8 blocks deals custom damage.
-6. Confirm no Lua errors in the console. Nodes are placeable in creative mode.
+6. Give yourself tools with `/giveme items:cragpick` (or timberaxe, soilscoop, shortblade) and confirm they dig the matching nodes (cragstone, timber, soil/turf, foliage) at reasonable speeds and lose durability.
+7. Confirm no Lua errors in the console. Nodes and tools are placeable/usable in creative mode.
 
 ## Goals
 
