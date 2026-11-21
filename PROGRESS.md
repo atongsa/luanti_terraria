@@ -230,3 +230,33 @@ Format for each entry:
 
 **Next**:
 - Day 6: Simple crafting system + workbench.
+
+---
+
+## 2026-11-21 — Day 6: Simple crafting system + workbench
+
+**Status**: Done
+
+**What was done**:
+- Implemented a simple crafting system in `mods/crafting/init.lua` with a placeable `crafting:craftbench` node.
+- Craftbench provides a 3x3 crafting grid + preview via formspec and inventory callbacks (using `minetest.get_craft_result`).
+- Registered shaped recipes:
+  - Craftbench itself (2x2 timber) — craftable in player inventory.
+  - Tools from Day 5: cragpick, timberaxe, soilscoop, shortblade (require the 3x3 grid).
+- Updated `mods/crafting/mod.conf` to depend on nodes and items.
+- Node uses existing timber texture as placeholder; groups allow chopping with timberaxe.
+
+**Commits / files**:
+- mods/crafting/mod.conf (depends = nodes,items)
+- mods/crafting/init.lua (craftbench node + recipes + inventory logic)
+- PROGRESS.md (this update)
+- README.md (status updated)
+
+**Notes / blockers**:
+- Crafting logic is basic and original. Preview updates on inventory changes; taking the result consumes inputs.
+- Please test in Luanti: dig some timber, craft a craftbench (or /giveme crafting:craftbench), place it, right-click to open, and craft the tools from stone/soil/timber. Confirm recipes work and no Lua errors.
+- All content original; no Terraria names or assets.
+- Player 2x2 crafting grid (if available) can make the craftbench; tools need the station.
+
+**Next**:
+- Day 7: Day/night cycle + basic time-of-day lighting.
