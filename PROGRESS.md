@@ -260,3 +260,31 @@ Format for each entry:
 
 **Next**:
 - Day 7: Day/night cycle + basic time-of-day lighting.
+
+---
+
+## 2026-11-22 — Day 7: Day/night cycle + basic time-of-day lighting
+
+**Status**: Done
+
+**What was done**:
+- Enabled and configured the day/night cycle in `mods/core/init.lua`:
+  - Set `time_speed` to 72 (full cycle ≈ 20 minutes real time).
+  - Start new worlds / first join near sunrise (0.25).
+  - Configured basic sky, sun, moon, and stars for proper time-of-day visual lighting (engine handles sunlight intensity and fade automatically).
+- Added `/time` chat command for testing (get current time or set to a value 0.0–1.0).
+- Surface lighting now changes with the cycle; underground remains dark without light sources (as expected).
+
+**Commits / files**:
+- mods/core/init.lua (day/night cycle setup + sky + /time command)
+- PROGRESS.md (this update)
+- README.md (status updated)
+
+**Notes / blockers**:
+- Lighting is the engine's standard time-of-day system (sunlight on surface, darkness at night and underground). No custom light sources or advanced shaders yet.
+- Please test in Luanti: create/join a world, observe the sky and lighting change over time (or use `/time 0.5` for noon, `/time 0` for midnight). Confirm no Lua errors and that the cycle progresses.
+- All content original; no Terraria names or assets.
+- Enemies that spawn based on time of day will come in Day 8.
+
+**Next**:
+- Day 8: First enemy (slime-like) + basic combat (melee hit detection).
