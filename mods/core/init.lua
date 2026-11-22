@@ -1,5 +1,6 @@
 -- Core mod for Luanti Terraria-inspired game
 -- Day 4: Player physics tuning (speed, jump, gravity, fall damage)
+-- Day 7: Day/night cycle + basic time-of-day lighting
 
 core.log("action", "[core] Luanti Terraria-inspired game core mod loaded")
 
@@ -28,6 +29,24 @@ minetest.register_on_joinplayer(function(player)
     last_y[name] = player:get_pos().y
     is_falling[name] = false
     core.log("action", "[core] Applied physics overrides to " .. name)
+
+    -- Day 7: Basic sky for time-of-day lighting (engine handles sunlight fade)
+    player:set_sky({
+        base_color = {r=135, g=206, b=235},
+        type = "regular",
+        clouds = true,
+    })
+    player:set_sun({
+        visible = true,
+        sunrise_visible = true,
+    })
+    player:set_moon({
+        visible = true,
+    })
+    player:set_stars({
+        visible = true,
+        count = 1000,
+    })
 end)
 
 minetest.register_on_leaveplayer(function(player)
@@ -77,4 +96,42 @@ minetest.register_globalstep(function(dtime)
     end
 end)
 
+-- Day 7: Ensure day/night cycle is active with reasonable speed
+-- time_speed 72 ≈ full day cycle in about 20 minutes real time (engine default-ish)
+-- 0 = midnight, 0.25 = sunrise, 0.5 = noon, 0.75 = sunset
+minetest.settings:set("time_speed", "72")
+
+-- Start new worlds near sunrise for visibility
+minetest.register_on_newplayer(function(player)
+    minetest.set_timeofday(0.25)
+    core.log("action", "[core] Set initial timeofday to sunrise for new player")
+end)
+
+-- Also set on first join if time is still default midnight
+minetest.register_on_joinplayer(function(player)
+    local tod = minetest.get_timeofday()
+    if tod < 0.01 or tod > 0.99 then
+        minetest.set_timeofday(0.25)
+    end
+end)
+
+-- Simple chat command for testing the cycle
+minetest.register_chatcommand("time", {
+    params = "[0.0-1.0]",
+    description = "Get or set time of day (0=midnight, 0.5=noon)",
+    func = function(name, param)
+        if param == "" then
+            local tod = minetest.get_timeofday()
+            return true, string.format("Current time of day: %.3f", tod)
+        end
+        local t = tonumber(param)
+        if t and t >= 0 and t <= 1 then
+            minetest.set_timeofday(t)
+            return true, string.format("Time of day set to %.3f", t)
+        end
+        return false, "Usage: /time [0.0 to 1.0]"
+    end,
+})
+
 core.log("action", "[core] Player physics tuning registered (Terraria-like 3D feel)")
+core.log("action", "[core] Day/night cycle enabled with time_speed=72 and basic sky lighting")
