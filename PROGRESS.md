@@ -288,3 +288,33 @@ Format for each entry:
 
 **Next**:
 - Day 8: First enemy (slime-like) + basic combat (melee hit detection).
+
+---
+
+## 2026-11-23 — Day 8: First enemy (gelblob) + basic combat
+
+**Status**: Done
+
+**What was done**:
+- Registered the first enemy `entities:gelblob` (original slime-like hopping green blob) in `mods/entities/init.lua`.
+- Basic AI: periodically hops toward nearby players (or idles randomly); damages player on close contact with cooldown and knockback.
+- Basic melee combat: `on_punch` detects hits, applies damage from the wielded tool's fleshy damage groups (shortblade hits harder), applies knockback, and removes the entity at 0 HP, dropping `entities:gel_residue`.
+- Added testing chat command `/spawnblob` to spawn one near the player.
+- Updated `mods/entities/mod.conf` to depend on nodes and items.
+- Added placeholder textures note in `mods/entities/textures/README.md` (currently uses green turf texture for the cube visual).
+
+**Commits / files**:
+- mods/entities/mod.conf (depends = nodes,items)
+- mods/entities/init.lua (gelblob entity, residue item, spawn command, combat logic)
+- mods/entities/textures/README.md
+- PROGRESS.md (this update)
+- README.md (status updated)
+
+**Notes / blockers**:
+- Visual is a simple green cube using existing turf texture (original placeholder). Can be replaced with dedicated pixel art later.
+- Spawning is manual via `/spawnblob` for testing; automatic night spawns or surface ABMs can be added later.
+- Please test in Luanti: use `/spawnblob`, approach the hopping blob (it should damage you on contact), then punch it with the shortblade (or bare hands) until it dies and drops gel residue. Confirm knockback, damage scaling, and no Lua errors.
+- All content original; no Terraria names or assets.
+
+**Next**:
+- Day 9: Expand mapgen — surface biomes (forest, desert, snow), ore distribution matching early Terraria tiers.
