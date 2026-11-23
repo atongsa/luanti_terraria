@@ -6,7 +6,7 @@ A 3D voxel sandbox adventure game inspired by Terraria, built on the Luanti (for
 
 ## Status
 
-Day 7 complete: Day/night cycle + basic time-of-day lighting added. Time progresses at a reasonable speed (full cycle ~20 min), starting near sunrise. Sky/sun/moon/stars are configured so surface lighting fades naturally with the cycle. Use `/time` to check or set the time of day. Previous features (crafting, tools, physics, mapgen, nodes) remain in place.
+Day 8 complete: First enemy (gelblob - slime-like hopping blob) + basic melee combat added. Use `/spawnblob` to test. The gelblob hops toward you, damages on contact, and can be punched with tools (shortblade deals more damage). Drops gel residue on death. Previous features (day/night, crafting, tools, physics, mapgen, nodes) remain in place.
 
 See [OUTLINE.md](OUTLINE.md) for the full plan and 30-day roadmap.
 See [PROGRESS.md](PROGRESS.md) for daily logs.
@@ -21,7 +21,8 @@ See [PROGRESS.md](PROGRESS.md) for daily logs.
 6. Dig timber and craft a Craftbench (2x2 timber) or `/giveme crafting:craftbench`. Place it and right-click to open the 3x3 crafting grid. Craft tools from timber/cragstone/soil.
 7. Give yourself tools with `/giveme items:cragpick` (or timberaxe, soilscoop, shortblade) and confirm they dig the matching nodes at reasonable speeds and lose durability.
 8. Observe the day/night cycle: lighting on the surface changes from bright day to dark night. Use `/time` to view current time of day, or `/time 0.5` (noon) / `/time 0` (midnight) to jump the clock. Confirm sky, sun, and stars appear appropriately.
-9. Confirm no Lua errors in the console. Nodes, tools, and craftbench are placeable/usable.
+9. Test combat: `/spawnblob` to spawn a gelblob. It hops toward you and damages on close contact. Punch it (preferably with the shortblade) until it dies and drops gel residue. Confirm knockback and no Lua errors.
+10. Confirm no Lua errors in the console. Nodes, tools, and craftbench are placeable/usable.
 
 ## Goals
 
