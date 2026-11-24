@@ -318,3 +318,39 @@ Format for each entry:
 
 **Next**:
 - Day 9: Expand mapgen — surface biomes (forest, desert, snow), ore distribution matching early Terraria tiers.
+
+---
+
+## 2026-11-24 — Day 9: Expand mapgen with biomes and ores
+
+**Status**: Done
+
+**What was done**:
+- Expanded custom mapgen in `mods/mapgen/init.lua` with three surface biomes selected via simple large-scale noise:
+  - Forest: turf surface + soil under, occasional simple trees (timber trunk + foliage canopy).
+  - Desert: sand surface and underlayer (dune-like height variation).
+  - Snow: snow surface over soil.
+- Added early-tier ore nodes in `mods/nodes/init.lua` with original names matching progression feel:
+  - `nodes:copral_ore` (copper-like, shallow, higher chance near surface).
+  - `nodes:ferrite_ore` (iron-like, mid-depth).
+  - `nodes:argentite_ore` (silver-like, deeper).
+  - `nodes:aurite_ore` (gold-like, deepest early).
+- Ores replace stone probabilistically by depth during generation; caves still carve through stone and ores.
+- Updated texture README to document new placeholder textures needed (sand, snow, ore variants).
+- All biomes and ores use original names and simple implementations.
+
+**Commits / files**:
+- mods/nodes/init.lua (added sand, snow, copral/ferrite/argentite/aurite ore nodes)
+- mods/mapgen/init.lua (biome selection, trees in forest, depth-based ore placement, updated cave carving)
+- mods/nodes/textures/README.md (updated with new texture names)
+- README.md (status and testing instructions updated)
+- PROGRESS.md (this update)
+
+**Notes / blockers**:
+- New nodes currently use existing solid-color textures as placeholders (sand/soil brown, snow/turf green, ores/stone gray). Dedicated original textures can be added later.
+- Biome boundaries are soft via noise; trees are basic single-column with canopy. Ore rates are starting values for early exploration.
+- Please test in Luanti: generate a new world and explore to see forest trees, desert sand areas, snow regions, and mine underground for the four early ores at appropriate depths. Confirm no Lua errors and that tools dig the new nodes.
+- All content original; no Terraria names or assets.
+
+**Next**:
+- Day 10: Inventory & equipment slots (armor + accessories).
