@@ -1,5 +1,6 @@
 -- Crafting mod
 -- Day 6: Simple crafting system + workbench (craftbench)
+-- Day 10: Recipes for early hide armor and gel charm
 -- Original names and designs only
 
 core.log("action", "[crafting] Crafting mod loaded")
@@ -149,4 +150,47 @@ minetest.register_craft({
     }
 })
 
-core.log("action", "[crafting] Basic recipes registered for craftbench and tools")
+-- Day 10: Early hide armor (gel residue + timber)
+minetest.register_craft({
+    output = "items:hide_cap",
+    recipe = {
+        {"entities:gel_residue", "entities:gel_residue", "entities:gel_residue"},
+        {"entities:gel_residue", "", "entities:gel_residue"},
+    }
+})
+
+minetest.register_craft({
+    output = "items:hide_tunic",
+    recipe = {
+        {"entities:gel_residue", "", "entities:gel_residue"},
+        {"entities:gel_residue", "entities:gel_residue", "entities:gel_residue"},
+        {"entities:gel_residue", "entities:gel_residue", "entities:gel_residue"},
+    }
+})
+
+minetest.register_craft({
+    output = "items:hide_leggings",
+    recipe = {
+        {"entities:gel_residue", "entities:gel_residue", "entities:gel_residue"},
+        {"entities:gel_residue", "", "entities:gel_residue"},
+        {"entities:gel_residue", "", "entities:gel_residue"},
+    }
+})
+
+minetest.register_craft({
+    output = "items:hide_boots",
+    recipe = {
+        {"entities:gel_residue", "", "entities:gel_residue"},
+        {"entities:gel_residue", "", "entities:gel_residue"},
+    }
+})
+
+minetest.register_craft({
+    output = "items:gel_charm",
+    recipe = {
+        {"entities:gel_residue", "nodes:timber"},
+        {"nodes:timber", "entities:gel_residue"},
+    }
+})
+
+core.log("action", "[crafting] Basic recipes registered for craftbench, tools, and early armor")

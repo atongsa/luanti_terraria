@@ -1,6 +1,7 @@
 -- Items mod
 -- Day 5: Basic tools - cragpick (pickaxe), timberaxe (axe), soilscoop (shovel), shortblade (sword)
 -- With durability (uses) and proper groupcaps matching node groups
+-- Day 10: Basic armor and accessory items (hide set + gel charm)
 -- All names and designs original
 
 core.log("action", "[items] Items mod loaded")
@@ -58,4 +59,27 @@ register_basic_tool("shortblade", "Shortblade",
     5
 )
 
-core.log("action", "[items] Basic tools registered with durability and mining groups")
+-- Day 10: Basic armor pieces (hide set from gel residue) + one accessory
+-- Defense value stored in groups for the equipment system to read
+local function register_armor(name, desc, inventory_image, slot, defense)
+    minetest.register_tool("items:" .. name, {
+        description = desc .. " (Defense: " .. defense .. ")",
+        inventory_image = inventory_image,
+        groups = {armor = 1, armor_slot = slot, defense = defense},
+        tool_capabilities = {
+            full_punch_interval = 1.0,
+            damage_groups = {fleshy = 1},
+        },
+    })
+    core.log("action", "[items] Registered armor items:" .. name .. " (slot=" .. slot .. ", def=" .. defense .. ")")
+end
+
+register_armor("hide_cap", "Hide Cap", "items_hide_cap.png", "head", 1)
+register_armor("hide_tunic", "Hide Tunic", "items_hide_tunic.png", "chest", 2)
+register_armor("hide_leggings", "Hide Leggings", "items_hide_leggings.png", "legs", 1)
+register_armor("hide_boots", "Hide Boots", "items_hide_boots.png", "feet", 1)
+
+-- Simple accessory (can go in either accessory slot)
+register_armor("gel_charm", "Gel Charm", "items_gel_charm.png", "accessory", 1)
+
+core.log("action", "[items] Basic tools and early armor/accessories registered")

@@ -354,3 +354,44 @@ Format for each entry:
 
 **Next**:
 - Day 10: Inventory & equipment slots (armor + accessories).
+
+---
+
+## 2026-11-25 — Day 10: Inventory & equipment slots (armor + accessories)
+
+**Status**: Done
+
+**What was done**:
+- Registered early-tier hide armor and one accessory in `mods/items/init.lua` with original names:
+  - `items:hide_cap` (head, defense 1)
+  - `items:hide_tunic` (chest, defense 2)
+  - `items:hide_leggings` (legs, defense 1)
+  - `items:hide_boots` (feet, defense 1)
+  - `items:gel_charm` (accessory, defense 1)
+- Implemented equipment system in `mods/ui/init.lua`:
+  - Player inventory lists for head/chest/legs/feet + two accessory slots.
+  - `/equip` chat command opens a formspec showing slots, current defense total, and main inventory.
+  - Slot validation: only matching armor type can be placed in each slot.
+  - Flat damage reduction via `on_player_hpchange` (defense points subtract from incoming damage, minimum 1).
+- Added shaped recipes for all hide pieces and the gel charm (using `entities:gel_residue` + timber) in `mods/crafting/init.lua`.
+- Updated dependencies (`ui` depends on items; `crafting` depends on entities for gel residue recipes).
+- Documented new placeholder inventory textures in items textures README.
+
+**Commits / files**:
+- mods/items/init.lua (armor + accessory registration)
+- mods/items/textures/README.md (updated)
+- mods/ui/init.lua (equipment slots, formspec, damage reduction)
+- mods/ui/mod.conf (depends = items)
+- mods/crafting/init.lua (armor recipes)
+- mods/crafting/mod.conf (depends += entities)
+- README.md (status + testing updated)
+- PROGRESS.md (this update)
+
+**Notes / blockers**:
+- Armor textures are solid-color placeholders (will show missing until simple PNGs are added, same as earlier tools). Functionality is complete.
+- Damage reduction is simple and original (flat subtraction). Full set + charm gives ~6 defense.
+- Please test in Luanti: kill gelblobs for residue, craft armor on the craftbench, use `/equip` to equip pieces in the correct slots, and confirm reduced damage from gelblob contact or falls. Check the defense label updates. Confirm no Lua errors.
+- All content original; no Terraria names or assets.
+
+**Next**:
+- Day 11: Ranged weapon (bow + arrows) + projectile entities.
