@@ -1,6 +1,7 @@
 -- Crafting mod
 -- Day 6: Simple crafting system + workbench (craftbench)
 -- Day 10: Recipes for early hide armor and gel charm
+-- Day 11: Recipes for timberbow and pointed arrows
 -- Original names and designs only
 
 core.log("action", "[crafting] Crafting mod loaded")
@@ -193,4 +194,23 @@ minetest.register_craft({
     }
 })
 
-core.log("action", "[crafting] Basic recipes registered for craftbench, tools, and early armor")
+-- Day 11: Timberbow and pointed arrows
+minetest.register_craft({
+    output = "items:timberbow",
+    recipe = {
+        {"nodes:timber", "", "nodes:timber"},
+        {"nodes:timber", "nodes:timber", "nodes:timber"},
+        {"", "nodes:timber", ""},
+    }
+})
+
+minetest.register_craft({
+    output = "items:pointed_arrow 8",
+    recipe = {
+        {"nodes:cragstone"},
+        {"nodes:timber"},
+        {"nodes:timber"},
+    }
+})
+
+core.log("action", "[crafting] Basic recipes registered for craftbench, tools, early armor, and ranged gear")
