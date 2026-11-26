@@ -395,3 +395,41 @@ Format for each entry:
 
 **Next**:
 - Day 11: Ranged weapon (bow + arrows) + projectile entities.
+
+---
+
+## 2026-11-26 — Day 11: Ranged weapon (bow + arrows) + projectile entities
+
+**Status**: Done
+
+**What was done**:
+- Registered ranged items in `mods/items/init.lua` with original names:
+  - `items:timberbow` (bow tool with on_use that consumes arrows and fires projectiles)
+  - `items:pointed_arrow` (stackable craftitem ammunition)
+- Implemented projectile entity `entities:pointed_arrow` in `mods/entities/init.lua`:
+  - Sprite visual (placeholder timber texture), flies in the fired direction with lifetime.
+  - Detects solid node collisions (removes) and object collisions (damages players or punches gelblobs using fleshy damage).
+  - Stores owner and damage; supports staticdata for persistence.
+- Added shaped recipes in `mods/crafting/init.lua`:
+  - Timberbow from timber (3x3 shape).
+  - Pointed arrows from cragstone + timber (yields 8).
+- Updated texture READMEs for inventory and entity placeholders.
+- Bow applies wear on each shot; requires arrows in inventory to fire.
+
+**Commits / files**:
+- mods/items/init.lua (timberbow + pointed_arrow registration and on_use)
+- mods/entities/init.lua (pointed_arrow projectile entity)
+- mods/crafting/init.lua (bow and arrow recipes)
+- mods/items/textures/README.md (updated)
+- mods/entities/textures/README.md (updated)
+- README.md (status + testing updated)
+- PROGRESS.md (this update)
+
+**Notes / blockers**:
+- Arrow visual is a simple sprite using existing timber texture (original placeholder). Can be replaced with dedicated pixel art later.
+- Projectile collision is radius-based and original. Damage to gelblobs reuses the existing on_punch logic.
+- Please test in Luanti: craft or `/giveme` the timberbow and some pointed arrows, wield the bow and use it (left-click) to fire. Confirm an arrow flies in your look direction, hits a gelblob (damaging it) or a solid node (disappears), consumes one arrow, and the bow loses durability. Confirm no Lua errors.
+- All content original; no Terraria names or assets.
+
+**Next**:
+- Day 12: First boss (Eye-of-Cthulhu style mechanics, original name + design) + spawn conditions.
