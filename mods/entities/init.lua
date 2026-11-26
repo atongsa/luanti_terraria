@@ -1,5 +1,6 @@
 -- Entities mod
 -- Day 8: First enemy (gelblob - slime-like) + basic melee combat (melee hit detection)
+-- Day 11: Pointed arrow projectile for timberbow
 -- Original name and design: green hopping blob that approaches players and damages on contact
 
 core.log("action", "[entities] Entities mod loaded")
@@ -152,4 +153,92 @@ minetest.register_chatcommand("spawnblob", {
     end,
 })
 
-core.log("action", "[entities] Gelblob enemy and basic melee combat registered")
+-- Day 11: Pointed arrow projectile entity
+minetest.register_entity("entities:pointed_arrow", {
+    initial_properties = {
+        physical = false,
+        collide_with_objects = false,
+        collisionbox = {-0.1, -0.1, -0.1, 0.1, 0.1, 0.1},
+        visual = "sprite",
+        textures = {"nodes_timber.png"},  -- placeholder brown shaft
+        visual_size = {x = 0.4, y = 0.4},
+        automatic_face_movement_dir = true,
+        automatic_face_movement_max_rotation_per_sec = 360,
+    },
+    damage = 6,
+    owner = nil,
+    timer = 0,
+    lifetime = 4.0,
+
+    on_activate = function(self, staticdata)
+        self.object:set_armor_groups({fleshy = 100})
+        self.timer = 0
+        if staticdata and staticdata ~= "" then
+            local data = minetest.deserialize(staticdata)
+            if data then
+                self.owner = data.owner
+                self.damage = data.damage or 6
+            end
+        end
+    end,
+
+    get_staticdata = function(self)
+        return minetest.serialize({owner = self.owner, damage = self.damage})
+    end,
+
+    on_step = function(self, dtime)
+        self.timer = self.timer + dtime
+        if self.timer > self.lifetime then
+            self.object:remove()
+            return
+        end
+
+        local pos = self.object:get_pos()
+        if not pos then
+            self.object:remove()
+            return
+        end
+
+        -- Check for solid node collision
+        local node = minetest.get_node(pos)
+        if node and node.name ~= "air" and node.name ~= "ignore" then
+            -- Stick briefly then remove (or just remove)
+            self.object:remove()
+            return
+        end
+
+        -- Check for object collisions (entities and players)
+        local objs = minetest.get_objects_inside_radius(pos, 0.6)
+        for _, obj in ipairs(objs) do
+            if obj ~= self.object then
+                local hit = false
+                if obj:is_player() then
+                    local pname = obj:get_player_name()
+                    if pname ~= self.owner then
+                        local hp = obj:get_hp()
+                        obj:set_hp(math.max(0, hp - self.damage))
+                        core.log("action", "[entities] Pointed arrow hit player " .. pname .. " for " .. self.damage)
+                        hit = true
+                    end
+                else
+                    local ent = obj:get_luaentity()
+                    if ent and ent.name == "entities:gelblob" then
+                        -- Punch the gelblob so it uses its on_punch logic
+                        obj:punch(self.object, 1.0, {
+                            full_punch_interval = 1.0,
+                            damage_groups = {fleshy = self.damage},
+                        }, nil)
+                        core.log("action", "[entities] Pointed arrow hit gelblob for " .. self.damage)
+                        hit = true
+                    end
+                end
+                if hit then
+                    self.object:remove()
+                    return
+                end
+            end
+        end
+    end,
+})
+
+core.log("action", "[entities] Gelblob enemy, basic melee combat, and pointed_arrow projectile registered")
