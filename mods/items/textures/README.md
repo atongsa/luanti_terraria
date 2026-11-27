@@ -19,6 +19,9 @@ Simple solid-color 16x16 PNG placeholders.
 - `items_timberbow.png` — dark brown (timberbow)
 - `items_pointed_arrow.png` — light brown with gray tip (pointed arrow)
 
+## Summon (Day 12)
+- `items_gloom_lens.png` — dark purple or gray (gloom lens for summoning the boss)
+
 These are original solid-color placeholders (similar to node textures). Replace with better original pixel art later.
 
 Items reference these via `inventory_image`. If a file is missing, Luanti shows a missing-texture indicator until added.
