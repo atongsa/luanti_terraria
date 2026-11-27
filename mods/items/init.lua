@@ -3,6 +3,7 @@
 -- With durability (uses) and proper groupcaps matching node groups
 -- Day 10: Basic armor and accessory items (hide set + gel charm)
 -- Day 11: Ranged weapon (timberbow) + pointed_arrow
+-- Day 12: Gloom Lens summon item for Gloomseer boss (usable at night)
 -- All names and designs original
 
 core.log("action", "[items] Items mod loaded")
@@ -134,4 +135,32 @@ minetest.register_tool("items:timberbow", {
     end,
 })
 
-core.log("action", "[items] Basic tools, early armor/accessories, and timberbow registered")
+-- Day 12: Gloom Lens - summon item for the first boss (only at night)
+minetest.register_craftitem("items:gloom_lens", {
+    description = "Gloom Lens\nUse at night to summon the Gloomseer",
+    inventory_image = "items_gloom_lens.png",
+    groups = {summon = 1},
+    on_use = function(itemstack, user, pointed_thing)
+        if not user or not user:is_player() then return itemstack end
+        local tod = minetest.get_timeofday()
+        local is_night = (tod < 0.25 or tod > 0.75)
+        if not is_night then
+            minetest.chat_send_player(user:get_player_name(), "The Gloom Lens only works at night.")
+            return itemstack
+        end
+        -- Consume one
+        itemstack:take_item(1)
+        local pos = user:get_pos()
+        if pos then
+            pos.y = pos.y + 8
+            pos.x = pos.x + (math.random() - 0.5) * 10
+            pos.z = pos.z + (math.random() - 0.5) * 10
+            minetest.add_entity(pos, "entities:gloomseer")
+            minetest.chat_send_all("A Gloomseer has been summoned!")
+            core.log("action", "[items] Gloomseer summoned by " .. user:get_player_name())
+        end
+        return itemstack
+    end,
+})
+
+core.log("action", "[items] Basic tools, early armor/accessories, timberbow, and gloom_lens registered")
