@@ -2,6 +2,7 @@
 -- Day 6: Simple crafting system + workbench (craftbench)
 -- Day 10: Recipes for early hide armor and gel charm
 -- Day 11: Recipes for timberbow and pointed arrows
+-- Day 12: Recipe for Gloom Lens (boss summon)
 -- Original names and designs only
 
 core.log("action", "[crafting] Crafting mod loaded")
@@ -213,4 +214,14 @@ minetest.register_craft({
     }
 })
 
-core.log("action", "[crafting] Basic recipes registered for craftbench, tools, early armor, and ranged gear")
+-- Day 12: Gloom Lens (boss summon item)
+minetest.register_craft({
+    output = "items:gloom_lens",
+    recipe = {
+        {"entities:gel_residue", "nodes:cragstone", "entities:gel_residue"},
+        {"nodes:cragstone", "entities:gel_residue", "nodes:cragstone"},
+        {"entities:gel_residue", "nodes:cragstone", "entities:gel_residue"},
+    }
+})
+
+core.log("action", "[crafting] Basic recipes registered for craftbench, tools, early armor, ranged gear, and gloom lens")
