@@ -1,6 +1,7 @@
 -- Entities mod
 -- Day 8: First enemy (gelblob - slime-like) + basic melee combat (melee hit detection)
 -- Day 11: Pointed arrow projectile for timberbow
+-- Day 12: First boss (Gloomseer) loaded from boss.lua
 -- Original name and design: green hopping blob that approaches players and damages on contact
 
 core.log("action", "[entities] Entities mod loaded")
@@ -241,4 +242,7 @@ minetest.register_entity("entities:pointed_arrow", {
     end,
 })
 
-core.log("action", "[entities] Gelblob enemy, basic melee combat, and pointed_arrow projectile registered")
+-- Load the first boss
+dofile(minetest.get_modpath("entities") .. "/boss.lua")
+
+core.log("action", "[entities] Gelblob enemy, basic melee combat, pointed_arrow projectile, and Gloomseer boss loaded")
