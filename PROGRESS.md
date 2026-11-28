@@ -123,3 +123,37 @@ Format for each entry:
 
 **Next**:
 - Day 13: Basic NPC (Guide equivalent, original name) + simple dialog formspec.
+
+---
+
+## 2026-11-28 — Day 13: Basic NPC (Wayseer) + simple dialog formspec
+
+**Status**: Done
+
+**What was done**:
+- Implemented the basic NPC `entities:wayseer` (original name/design: tall standing Guide-equivalent figure) in a new `mods/entities/npc.lua` (loaded from init.lua).
+  - Idle behavior with light gravity and occasional small movement.
+  - Right-click opens a simple dialog formspec showing a random helpful tip (crafting, combat, bosses, exploration).
+  - Friendly: punching does not damage or remove it (chat message instead).
+- Added spawn options:
+  - Chat command `/spawnwayseer`.
+  - Natural spawn once per world near the first joining player (after a short delay, on surface nodes).
+- Updated entity texture placeholder notes.
+- All names, dialog, and visuals original (tall timber-colored cube placeholder).
+
+**Commits / files**:
+- mods/entities/npc.lua (new Wayseer entity + dialog + spawn logic + command)
+- mods/entities/init.lua (dofile the npc file)
+- mods/entities/textures/README.md (updated)
+- README.md (status + testing updated)
+- PROGRESS.md (this update)
+
+**Notes / blockers**:
+- Visual is a tall cube using the existing timber texture as a brown placeholder. Can be replaced with dedicated original art or a simple upright sprite later.
+- Dialog is a single random tip per click (original formspec). Can expand to multi-page topics or recipe hints later.
+- Natural spawn is basic (first join only, simple ground find). Can be refined with housing system on Day 14.
+- Please test in Luanti: `/spawnwayseer` or join a fresh world. Right-click the tall figure to open the dialog. Confirm it stays friendly and no Lua errors.
+- All content original; no Terraria names or assets.
+
+**Next**:
+- Day 14: Housing system (room detection for NPCs).
