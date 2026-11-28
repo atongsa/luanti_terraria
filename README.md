@@ -6,7 +6,7 @@ A 3D voxel sandbox adventure game inspired by Terraria, built on the Luanti (for
 
 ## Status
 
-Day 12 complete: First boss — Gloomseer (large floating eye-like entity with phase transitions, dash attacks, and minion spawns). Summon at night with the craftable Gloom Lens, or use `/spawngloomseer` for testing. Natural night spawn possible if hurt. Drops Gloom Shard. Previous features (ranged weapons, equipment/armor, biomes/ores, gelblob combat, day/night, crafting, tools, physics, basic nodes) remain in place.
+Day 13 complete: Basic NPC — Wayseer (Guide equivalent, original name/design). Tall standing figure that appears near the surface. Right-click to open a simple dialog formspec with random helpful tips. Friendly (cannot be damaged). Use `/spawnwayseer` for testing or wait for natural spawn on first join. Previous features (Gloomseer boss, ranged weapons, equipment/armor, biomes/ores, gelblob combat, day/night, crafting, tools, physics, basic nodes) remain in place.
 
 See [OUTLINE.md](OUTLINE.md) for the full plan and 30-day roadmap.
 See [PROGRESS.md](PROGRESS.md) for daily logs.
@@ -25,6 +25,7 @@ See [PROGRESS.md](PROGRESS.md) for daily logs.
 10. Test equipment: `/giveme items:hide_tunic` (or other hide pieces / gel_charm). Use `/equip` to open the equipment formspec. Place matching armor in the correct slots (head/chest/legs/feet/accessories). Defense total is shown. Take damage from a gelblob or a fall and confirm reduced damage. Confirm no Lua errors in the console.
 11. Test ranged: `/giveme items:timberbow` and `/giveme items:pointed_arrow 16` (or craft them). Wield the timberbow and left-click/use it while having arrows in inventory. An arrow projectile should fly in your look direction, hit a gelblob (damaging it via punch logic) or a wall (disappear), and consume one arrow + wear the bow. Confirm no Lua errors.
 12. Test first boss: Craft or `/giveme items:gloom_lens`. At night (`/time 0` or wait), use the lens to summon the Gloomseer (large floating cube). It will dash at you, deal contact damage, spawn gelblob minions, and switch to a faster phase 2 when damaged enough. Defeat it for gel residue + Gloom Shard. Alternatively use `/spawngloomseer`. Confirm phase change message, drops, and no Lua errors.
+13. Test NPC: Use `/spawnwayseer` or join a new world (natural spawn after a few seconds near surface). Right-click the tall brown cube to open the Wayseer dialog formspec with a random tip. Confirm it is friendly (punching shows a chat message and does not kill it). Confirm no Lua errors.
 
 ## Goals
 
